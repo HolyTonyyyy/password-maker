@@ -1,13 +1,13 @@
-
 // Get the button and add an event listener to it
 const generateButton = document.querySelector(".btn");
-generateButton.addEventListener("click", generatePassword);
 
 // Function to generate a password
 function generatePassword() {
   // Prompt for password length
-  let passwordLength = parseInt(prompt("Enter the length of the password (between 8 and 128 characters):"));
-  
+  let passwordLength = parseInt(
+    prompt("Enter the length of the password (between 8 and 128 characters):")
+  );
+
   // Validate the password length
   if (isNaN(passwordLength) || passwordLength < 8 || passwordLength > 128) {
     alert("Invalid password length. Please enter a number between 8 and 128.");
@@ -19,9 +19,14 @@ function generatePassword() {
   let includeUppercase = confirm("Include uppercase characters?");
   let includeNumeric = confirm("Include numeric characters?");
   let includeSpecial = confirm("Include special characters?");
-  
+
   // Validate that at least one character type is selected
-  if (!includeLowercase && !includeUppercase && !includeNumeric && !includeSpecial) {
+  if (
+    !includeLowercase &&
+    !includeUppercase &&
+    !includeNumeric &&
+    !includeSpecial
+  ) {
     alert("Please select at least one character type.");
     return;
   }
@@ -57,5 +62,13 @@ function generatePassword() {
 
   // Display the generated password
   alert("Your generated password is: " + password);
+  document.querySelector("#password").value = password;
+}
+function writePassword() {
+  var password = generatePassword();
+  var passwordText = document.querySelector("#password");
+
+  passwordText.value = password;
 }
 
+generateButton.addEventListener("click", generatePassword);
